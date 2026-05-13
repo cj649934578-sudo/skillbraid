@@ -1,0 +1,63 @@
+{
+  "planning": [
+    "brainstorming",
+    "plan",
+    "planning",
+    "requirements",
+    "spec",
+    "milestone"
+  ],
+  "implementation and code quality": [
+    "code",
+    "implementation",
+    "lint",
+    "review",
+    "tdd"
+  ],
+  "frontend and design": [
+    "frontend",
+    "interface",
+    "ui",
+    "ux",
+    "accessibility",
+    "responsive",
+    "design"
+  ],
+  "debugging and security": [
+    "debug",
+    "bug",
+    "security",
+    "forensics",
+    "observability"
+  ],
+  "github workflows": [
+    "github",
+    "github workflow",
+    "pull request"
+  ],
+  "documents and knowledge work": [
+    "document",
+    "docs",
+    "presentation",
+    "spreadsheet",
+    "research",
+    "wiki"
+  ],
+  "skill creation and maintenance": [
+    "skill-creator",
+    "create-skill",
+    "skill creation",
+    "skill maintenance",
+    "plugin",
+    "mcp",
+    "orchestrator"
+  ],
+  "testing strategy": [
+    "testing",
+    "testcase",
+    "qa",
+    "pytest",
+    "k6",
+    "gatling"
+  ]
+}

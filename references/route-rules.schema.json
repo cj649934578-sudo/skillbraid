@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skill Route Rules",
+  "type": "object",
+  "required": [
+    "version",
+    "scope",
+    "routes"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "global",
+        "project"
+      ]
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "preferences": {
+      "type": "object",
+      "properties": {
+        "explain_route_after_each_answer": {
+          "type": "boolean"
+        },
+        "confirm_before_rule_changes": {
+          "type": "boolean"
+        },
+        "project_rules_override_global": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "scenario",
+          "trigger_conditions",
+          "skip_conditions",
+          "chain",
+          "reason"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "scenario": {
+            "type": "string"
+          },
+          "trigger_conditions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "skip_conditions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "chain": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "skill",
+                "reason"
+              ],
+              "properties": {
+                "skill": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "optional": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "reason": {
+            "type": "string"
+          },
+          "risks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

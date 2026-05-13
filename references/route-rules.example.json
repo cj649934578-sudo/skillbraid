@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "scope": "project",
+  "updated_at": "2026-05-12",
+  "preferences": {
+    "explain_route_after_each_answer": true,
+    "confirm_before_rule_changes": true,
+    "project_rules_override_global": true
+  },
+  "routes": [
+    {
+      "name": "skill-creation-maintenance",
+      "scenario": "Create or modify a Codex skill package",
+      "trigger_conditions": [
+        "The user asks to create a new skill",
+        "The user asks to change behavior or routing rules for an existing skill"
+      ],
+      "skip_conditions": [
+        "The user only asks a factual question about what a skill does"
+      ],
+      "chain": [
+        {
+          "skill": "brainstorming",
+          "reason": "Clarify trigger conditions, boundaries, storage, and user confirmation before changing behavior"
+        },
+        {
+          "skill": "writing-plans",
+          "reason": "Turn the approved spec into a task-by-task implementation plan"
+        },
+        {
+          "skill": "test",
+          "reason": "Verify helper scripts, schemas, and package structure after implementation",
+          "optional": true
+        }
+      ],
+      "reason": "Skill behavior is durable and easy to overfit, so design and plan steps reduce bad long-term rules.",
+      "risks": [
+        "Skipping design can create a skill that routes too aggressively",
+        "Writing rules without confirmation can make future sessions confusing"
+      ]
+    }
+  ]
+}
