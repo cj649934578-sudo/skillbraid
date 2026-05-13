@@ -47,4 +47,5 @@ def test_skill_frontmatter_and_required_phrasing():
     assert "本次链路：" in text
     assert "选择原因：" in text
     assert "后续可选优化：" in text
+    assert "优先使用 SkillBraid 判断链路" in text
     assert "Do not silently write or change route rules." in text
