@@ -11,30 +11,21 @@ def read_text(path: Path) -> str:
 
 
 def test_reference_json_files_parse():
-    expected_files = [
-        "capability-groups.json",
-        "route-rules.schema.json",
-        "route-rules.example.json",
-        "usage-record.schema.json",
-        "usage-record.example.json",
-    ]
-
-    for filename in expected_files:
-        path = REFERENCES_DIR / filename
-        assert path.exists(), f"Missing {filename}"
-        payload = json.loads(read_text(path))
-        assert isinstance(payload, dict)
+    path = REFERENCES_DIR / "capability-groups.json"
+    assert path.exists()
+    payload = json.loads(read_text(path))
+    assert isinstance(payload, dict)
 
 
-def test_route_examples_match_declared_version_and_scope():
-    route_example = json.loads(read_text(REFERENCES_DIR / "route-rules.example.json"))
-    usage_example = json.loads(read_text(REFERENCES_DIR / "usage-record.example.json"))
+def test_markdown_templates_define_route_storage_and_agents_index():
+    skillbraid_template = read_text(REFERENCES_DIR / "SKILLBRAID.template.md")
+    agents_template = read_text(REFERENCES_DIR / "AGENTS.skillbraid.md")
 
-    assert route_example["version"] == "1.0"
-    assert route_example["scope"] == "project"
-    assert route_example["routes"][0]["chain"][0]["skill"] == "brainstorming"
-    assert usage_example["version"] == "1.0"
-    assert usage_example["records"][0]["route_name"] == "skill-creation-maintenance"
+    assert "# SkillBraid Project Rules" in skillbraid_template
+    assert "## Routes" in skillbraid_template
+    assert "## Usage Notes" in skillbraid_template
+    assert ".codex/skillbraid/SKILLBRAID.md" in agents_template
+    assert "Do not create, update, or remove SkillBraid route rules unless the user confirms." in agents_template
 
 
 def test_skill_frontmatter_and_required_phrasing():
@@ -47,5 +38,9 @@ def test_skill_frontmatter_and_required_phrasing():
     assert "本次链路：" in text
     assert "选择原因：" in text
     assert "后续可选优化：" in text
-    assert "优先使用 SkillBraid 判断链路" in text
+    assert ".codex\\skillbraid\\SKILLBRAID.md" in text
+    assert "do not hardcode route triggers in `AGENTS.md`" in text
+    assert "skillbraid:init" in text
+    assert "skillbraid:update route <route-name>" in text
+    assert "skillbraid:help" in text
     assert "Do not silently write or change route rules." in text

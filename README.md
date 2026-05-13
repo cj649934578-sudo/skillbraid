@@ -13,9 +13,40 @@ SkillBraid 是一个 Codex skill 路由助手：它会扫描你已安装的 skil
 - Scans installed `SKILL.md` files.
 - Classifies skills into capability groups.
 - Surfaces hidden, invalid, and duplicate skills.
-- Helps the user confirm recurring scenarios before writing route rules.
+- Helps the user confirm recurring scenarios before writing route rules to `SKILLBRAID.md`.
 - Adds a short route explanation after routed answers.
 - Suggests route improvements only when there is a clear reason.
+- Keeps `AGENTS.md` as a small index that points agents to `.codex/skillbraid/SKILLBRAID.md`.
+
+## Storage
+
+SkillBraid uses one Markdown file per layer:
+
+```text
+Project: .codex/skillbraid/SKILLBRAID.md
+Global:  %USERPROFILE%\.codex\skillbraid\SKILLBRAID.md
+```
+
+`AGENTS.md` should only include a SkillBraid index pointing to the project file. Confirmed route triggers, chains, reasons, and usage notes belong in `SKILLBRAID.md`, not in `AGENTS.md`.
+
+## Commands
+
+SkillBraid is designed around three memorable command triggers:
+
+```text
+skillbraid:init
+skillbraid:update
+skillbraid:help
+```
+
+`skillbraid:update` also supports targeted updates:
+
+```text
+skillbraid:update global
+skillbraid:update route <route-name>
+```
+
+All route changes require user confirmation before writing to `SKILLBRAID.md`.
 
 ## Verify
 
@@ -36,3 +67,5 @@ python scripts/scan_skills.py --json
 Install this repository by copying or linking it into a Codex skill root such as `%USERPROFILE%\.codex\skills\skillbraid`.
 
 After installation, ask Codex to initialize skill routing. The skill will scan installed skills, discuss common scenarios, and wait for confirmation before writing any route rules.
+
+Use `references/SKILLBRAID.template.md` for manual project or global rule maintenance.
