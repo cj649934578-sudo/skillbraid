@@ -1,11 +1,15 @@
 ## SkillBraid
 
-This project uses SkillBraid for confirmed skill route guidance.
+This project uses SkillBraid to store user-confirmed routes for recurring work.
 
-Before choosing skills or planning a skill chain, read:
+Before deciding which skills, tools, or workflow to use for a non-trivial task, read:
 - `.codex/skillbraid/SKILLBRAID.md`
 
-When a request matches a confirmed route in that file, follow the route and end with:
+Use a route only when its trigger conditions match the current request. Do not invent or force a route match.
+
+If no confirmed route matches, proceed normally or propose a candidate route and wait for user confirmation before saving it.
+
+When a confirmed route is used, end the response with:
 
 ```text
 本次链路：...

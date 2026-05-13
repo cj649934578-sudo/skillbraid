@@ -25,6 +25,9 @@ def test_markdown_templates_define_route_storage_and_agents_index():
     assert "## Routes" in skillbraid_template
     assert "## Usage Notes" in skillbraid_template
     assert ".codex/skillbraid/SKILLBRAID.md" in agents_template
+    assert "user-confirmed routes for recurring work" in agents_template
+    assert "non-trivial task" in agents_template
+    assert "Do not invent or force a route match." in agents_template
     assert "Do not create, update, or remove SkillBraid route rules unless the user confirms." in agents_template
 
 
